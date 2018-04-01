@@ -1,21 +1,8 @@
-# Schism
+# BranchPoint
 
-**TODO: Add description**
+Conditional compilation macros meant to make it easier to benchmark
+small changes to Elixir modules.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `schism` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:schism, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/schism](https://hexdocs.pm/schism).
-
+Currently, this package is only available on GitHub.
