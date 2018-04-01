@@ -1,8 +1,14 @@
-
-Schism.recompile_code()
-
 Benchee.run(%{
-  "Fast" => Schism.according_to_dogma(fn -> ModuleC.h(1) end),
-  "Slow" => Schism.according_to_heresy("implementation #2", fn -> ModuleC.h(1) end),
-  "Slowest" => Schism.according_to_heresy("implementation #3", fn -> ModuleC.h(1) end),
+  "Fast" => {
+    fn _input -> ModuleC.h(1) end,
+    before_scenario: fn _input -> BranchPoint.pick(branch_point1: :default) end
+  },
+  "Slow" => {
+    fn _input -> ModuleC.h(1) end,
+    before_scenario: fn _input -> BranchPoint.pick(branch_point1: "implementation #2") end
+  },
+  "Slowest" => {
+    fn _input -> ModuleC.h(1) end,
+    before_scenario: fn _input -> BranchPoint.pick(branch_point1: "implementation #3") end
+  }
 })
