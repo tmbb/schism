@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.18.3">
+    <title>Schism – schism v0.1.0</title>
+    <link rel="stylesheet" href="dist/app-480ffdc169.css" />
+    
+    <script src="dist/sidebar_items-f3dc77e26d.js"></script>
+    
+    
+    
+    
+  </head>
+  <body data-type="extras">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+
+<div class="main">
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
+</button>
+<section class="sidebar">
+
+  
+  <a href="readme.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+        schism
+      </h1>
+      <h2 class="sidebar-projectVersion">
+        v0.1.0
+      </h2>
+    </div>
+    
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+    
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+    
+
+    
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+    
+
+    
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+<h1>Schism</h1>
+<blockquote><p>“It is dangerous to be right in matters on which the established authorities are wrong.”</p>
+</blockquote>
+<ul>
+<li>Voltaire, <em>The Age of Louis XIV</em>
+</li>
+</ul>
+<p>Forbidden library that contains macros for conditional compilation of Elixir code.</p>
+<h2 id="installation" class="section-heading">
+  <a href="#installation" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Installation
+</h2>
+
+<p>Currently, this package is only available on GitHub.</p>
+<h2 id="motivation" class="section-heading">
+  <a href="#motivation" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Motivation
+</h2>
+
+<p>While a library with such a heretical name as schism?</p>
+<p>Suppose, fellow citizen, that your pious code contains a deeply nested stack of functions
+(as it should, for a function should do one thing and one thing only).</p>
+<p>Your code might well end up like this:</p>
+<pre><code class="elixir">defmodule MyLib.ModuleA do
+  def f(x) do
+    # ...
+  end
+
+  def g(x) do
+    # ...
+    y = f(x)
+    # ...
+  end
+
+  def h(x) do
+    # ...
+    y = g(x)
+    # ...
+  end
+end
+
+defmodule MyLib.ModuleB do
+  def w(x) do
+    # ...
+    y = ModuleA.f(x)
+    # ...
+  end
+end</code></pre>
+<p>Now suppose further that your code is slow.
+Such code will be wasteful and consume valuable CPU cycles.
+Such waste is abhorrent, and naturally heretical in nature.</p>
+<p>This is an unacceptable state of affairs!
+You must find the source of slowness, root it out with extreme prejudice and
+document it publicly so that such wasteful lines of code shall never know
+the light of day again.</p>
+<p>You must profile your code, detect the problem and benchmark your functions
+to guarantee you’ve improved performance.</p>
+<p>So far, the best options is to allow the <a href="https://github.com/PragTob/benchee">Benchee</a>
+to possess your code and document the performance improvements.</p>
+<p>However, let’s say you care about the performance of the function <code class="inline">MyLib.ModuleB.w/1</code> defined above, and that you manage to fix a performance problem in the function <code class="inline">MyLib.ModuleA.f/1</code>. You want to benchmark the performance of <code class="inline">w/1</code> under the new conditions and compare it to the performance under the old conditions.</p>
+<p>This would usually require you to compile the code, benchmark it and save the Benchee charts for future comparison. Then, you’d have to apply your changes, recompile,
+run the benchmark and “manually” compare the Benchee data.</p>
+<p>This is far from ideal.
+You’d like to be able to compare the before/after performance directly in the same chart.
+One solution is to define an extra module such as <code class="inline">MyLib.ModuleA__Temp</code> with the changes you want and compare the performance to the old module.
+This usually require a lot of copy and paste, which is quite error prone
+(for the nature of Man is to be imperfect, and imperfect we are), and if the function you want to test is in a different module you have to copy that module too.</p>
+<p>Things need not to be so complex.</p>
+<p>You don’t need to copy and paste, and you don’t need extra modules.</p>
+<p>This might be a sign that your dogmatic code has gone stale under the yoke of the
+Official Truth.</p>
+<p>You need to distance yourself from the dogmatic tyrants of the past.</p>
+<p>You need… a <a href="https://en.wikipedia.org/wiki/Schism">Schism</a>!</p>
+<p>A schism will allow you to have conditional compilation on your modules, and will allow you to choose between the (so called) truthful dogma and several heresies, to pick the one with the most favorable performance characteristics.</p>
+<h2 id="turning-to-heresy-and-abandoning-the-dogma" class="section-heading">
+  <a href="#turning-to-heresy-and-abandoning-the-dogma" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Turning to Heresy and Abandoning the Dogma
+</h2>
+
+<blockquote><p>“The world is kept alive only by heretics: the heretic Christ, the heretic Copernicus, the heretic Tolstoy. Our symbol of faith is heresy. (<em>Tomorrow</em>)”</p>
+</blockquote>
+<ul>
+<li>Yevgeny Zamyatin
+</li>
+</ul>
+<p>Let us then abandon the obsolete orthodoxy and embrace the heretical ideas of change:</p>
+<pre><code class="elixir">defmodule MyLib.ModuleA do
+  # Taint your code with the seeds of doubt and heresy
+  import Schism
+
+  schism &quot;structs vs records&quot; do
+    # boldly reafirm the dogma of the elixir:
+    dogma &quot;structs are superior&quot;
+      def f(x) do
+        # implementation of `f/1` that uses structs
+      end
+    end
+
+    # Spread the hateful screed that the old rusty records from Erlang
+    # might still have a place in code written today, despite their
+    # archaic and primitive nature
+    heresy &quot;records are superior&quot;
+      def f(x) do
+        # implementation of `f/1` that uses records
+      end
+    end
+  end
+
+  # The rest of the module remains the same at visual inspection,
+  # although it is now tainted by heresy...
+  # Through conditional compilation, the meaning of all this
+  # functions may  be changed as they are corrupted
+  # by the heretical ideas that defy the dogma
+  def g(x) do
+    # ...
+    y = f(x)
+    # ...
+  end
+
+  def h(x) do
+    # ...
+    y = g(x)
+    # ...
+  end
+end
+
+defmodule MyLib.ModuleB do
+  # Now, when you call functions from MyLib.ModuleA,
+  # you&#39;ll be calling functions already corrupted by heresy.
+  def w(x) do
+    # ...
+    y = MyLib.ModuleA.f(x)
+    # ...
+  end
+end</code></pre>
+<p>By default, the <a href="Schism.html#schism/2"><code class="inline">Schism.schism/2</code></a> macro will compile the <code class="inline">dogma</code> branch
+and discard the heresies</p>
+<p>You can now write the following benchmark:</p>
+<pre><code class="elixir"># benchmarks/structs_vs_records.exs
+Benchee.run(%{
+  &quot;structs are superior&quot; =&gt; {
+    fn _input -&gt; MyLib.ModuleB.w(666) end,
+    # Before running the benchmark, recompile the code according to the dogma
+    before_scenario: fn _input -&gt;
+      Schism.convert(%{&quot;structs vs records&quot; =&gt; &quot;structs are superior&quot;})
+    end
+  },
+  &quot;records are superior&quot; =&gt; {
+    # The code is the same as above, but it&#39;s being run under different conditions...
+    fn _input -&gt; MyLib.ModuleB.w(666) end,
+    # Before running the benchmark, recompile the code according to the heresy
+    # The same code will now have better or worse performance.
+    before_scenario: fn _input -&gt;
+      Schism.convert(%{&quot;structs vs records&quot; =&gt; &quot;records are superior&quot;})
+    end
+  }
+})</code></pre>
+<p>As usual, you can run the benchmark using:</p>
+<pre><code class="console">mix run benchmarks/structs_vs_records.exs</code></pre>
+<p>And the mix task will print something like the following:</p>
+<pre><code class="console">Operating System: Windows&quot;
+CPU Information: Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz
+Number of Available Cores: 8
+Available memory: 7.87 GB
+Elixir 1.6.2
+Erlang 20.0
+
+Benchmark suite executing with the following configuration:
+warmup: 2 s
+time: 5 s
+memory time: 0 μs
+parallel: 1
+inputs: none specified
+Estimated total run time: 14 s
+
+
+Benchmarking records are superior...
+Compiling 3 files (.ex)
+Benchmarking structs are superior...
+Compiling 3 files (.ex)
+
+Name                           ips        average  deviation         median         99th %
+records are superior             4         250 ms     ±0.00%         250 ms         250 ms
+structs are superior          2.13      468.73 ms     ±0.10%         469 ms         469 ms
+
+Comparison:
+records are superior             4
+structs are superior          2.13 - 1.87x slower</code></pre>
+<p>What does this code do?</p>
+<p>This code defines a <code class="inline">before_scenario</code> hook for Benchee.
+This is a function that should run before the benchmark.
+In this case, the <a href="Schism.html#convert/1"><code class="inline">Schism.convert/1</code></a> function converts the code into the
+“correct” set of beliefs for each schism.
+This entails recompiling the code and picking the correct dogma or heresy
+everywhere the <code class="inline">schism</code> macro is used.
+If no belief is specified for a given schism, the <code class="inline">dogma</code> will be picked instead.</p>
+<p>You can confirm from the logs above that the code has been compiled twice,
+as we would expect.</p>
+<p>The <a href="Schism.html#convert/1"><code class="inline">Schism.convert/1</code></a> function depends on Mix, so it can only be used in development,
+and not in production where Mix won’t be available.
+This doubles as a safety measure, as you most definitely don’t want to conditionally
+recompile your code at runtime in production.
+Such action is heretical, and will be met with extreme disapproval from your peers!</p>
+<p>For added safety in some very unlikely edge cases, the <a href="Schism.html#force_convert/1"><code class="inline">Schism.force_convert/1</code></a> function
+may be used instead of <a href="Schism.html#convert/1"><code class="inline">Schism.convert/1</code></a></p>
+<h2 id="ensuring-compatibility-of-beliefs" class="section-heading">
+  <a href="#ensuring-compatibility-of-beliefs" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Ensuring Compatibility of Beliefs
+</h2>
+
+<blockquote><p>“I myself have read the writings and teachings of the heretics, polluting my soul for a while with their abominable notions, though deriving this benefit: I was able to refute them for myself and loathe them even more.”</p>
+</blockquote>
+<ul>
+<li>Eusebius, <em>The Church History</em>
+</li>
+</ul>
+<p>The <code class="inline">:schism</code> library can be used to make your code faster.
+But you must ensure that the <em>heresies</em> you want to test are compatible with the <em>dogma</em>.
+One way of doing this is by running the same test suites for the heresy and for the dogma.
+The <a href="Schism.Testing.html"><code class="inline">Schism.Testing</code></a> module provides the <code class="inline">Schism.Testing.defsnipped</code> macro that reduces
+the amount of boilerplate you need.</p>
+<p>The use of this macro is best explained by example.
+First, you define a snippet (don’t forget to <code class="inline">require</code> the <a href="Schism.Testing.html"><code class="inline">Schism.Testing</code></a> module!)</p>
+<pre><code class="elixir">require Schism.Testing
+Schism.Testing.defsnippet StructsVsRecordsTestSnippet do
+  use ExUnit.Case, async: false
+
+  test &quot;...&quot; do
+    # ...
+  end
+
+  # ...
+end</code></pre>
+<p>Then, you can <code class="inline">use</code> the snippet inside your real testing modules:</p>
+<pre><code class="elixir">defmodule StructsVsRecords.StructsAreSuperior do
+  use StructsVsRecordsTestSnippet,
+    conversions: %{&quot;structs vs records&quot; =&gt; &quot;structs are superior&quot;}
+end
+
+defmodule StructsVsRecords.RecordsAreSuperior do
+  use StructsVsRecordsTestSnippet,
+    conversions: %{&quot;structs vs records&quot; =&gt; &quot;records are superior&quot;}
+end</code></pre>
+<p>The code above injects the code of the snippet inside your modules and
+makes sure your project is converted to the right beliefs before the tests
+in the module are run.
+For this to work, the snippet injects a <code class="inline">setup_all</code> macro that handles
+the conversions when the tests start and reverts to the dogma when the tests stop.
+If you need more control, simply omit the <code class="inline">:conversions</code> option and invoke the
+<code class="inline">setup_all</code> macro yourself:</p>
+<pre><code class="elixir">defmodule StructsVsRecords.RecordsAreSuperior do
+  use StructsVsRecordsTestSnippet
+
+  setup_all do
+    Schism.convert(%{&quot;structs vs records&quot; =&gt; &quot;records are superior&quot;}
+    # ... custom setup code ...
+
+    # After all tests are done, convert to the dogma
+    on_exit fn -&gt;
+      # ... custom teardown code ...
+      Schism.convert_to_dogma()
+    end
+  end
+end</code></pre>
+<p>Tests that use <code class="inline">schism</code> can’t be run with <code class="inline">async: true</code>, because that will
+break all of the guarantees <code class="inline">schism</code> needs to work properly.</p>
+<h3 id="what-is-this-sorcery-surely-it-must-be-heresy" class="section-heading">
+  <a href="#what-is-this-sorcery-surely-it-must-be-heresy" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  What is this Sorcery?! Surely it must be… HERESY!
+</h3>
+
+<blockquote><p>“History warns us … that it is the customary fate of new truths to begin as heresies and to end as superstitions.”</p>
+</blockquote>
+<ul>
+<li>Thomas Henry Huxley, <em>Collected Essays of Thomas Henry Huxley </em>
+</li>
+</ul>
+<p>The above looks more magical than it really is…
+The <code class="inline">defsnippet</code> macro is just a wrapper around <code class="inline">defmodule</code> that defines
+a <code class="inline">__using__/2</code> macro so that the module can be used.</p>
+<p>The <code class="inline">__using__/2</code> macro is defined such that it splices the AST of the snippet
+into the module it’s invoked on (it also adds the <code class="inline">setup_all</code> macro, as defined above).</p>
+<p>If confused, just check the implementation, which is very simple.</p>
+<h2 id="should-i-allow-the-taint-of-heresy-into-my-elixir-project" class="section-heading">
+  <a href="#should-i-allow-the-taint-of-heresy-into-my-elixir-project" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Should I Allow the Taint of Heresy into my Elixir Project?!
+</h2>
+
+<p>Using <code class="inline">schism</code> is safe in production, because the <code class="inline">dogma</code> will be chosen every time
+and the heresies will simply be discarded.</p>
+<p>The conversion functions <a href="Schism.html#convert/2"><code class="inline">Schism.convert/2</code></a>, <a href="Schism.html#force_convert/2"><code class="inline">Schism.force_convert/2</code></a>,
+<a href="Schism.html#convert_to_dogma/1"><code class="inline">Schism.convert_to_dogma/1</code></a> and <a href="Schism.html#force_convert_to_dogma/1"><code class="inline">Schism.force_convert_to_dogma/1</code></a> depend on Mix
+and will fail if invoked in production.</p>
+<p>The only drawback is that you’re adding yet another dependency to your project.
+Although <code class="inline">schism</code> doesn’t do much at runtime, you really require the <code class="inline">schism</code> macro
+for this to work in production.</p>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.3),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/app-9bd040e5e5.js"></script>
+  
+  
+  
+  
+  </body>
+</html>
+

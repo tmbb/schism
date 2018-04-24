@@ -1,0 +1,246 @@
+    <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.18.3">
+    <title>Schism.Testing – schism v0.1.0</title>
+    <link rel="stylesheet" href="dist/app-480ffdc169.css" />
+    
+    <script src="dist/sidebar_items-f3dc77e26d.js"></script>
+    
+    
+    
+    
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+
+    <div class="main">
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
+</button>
+<section class="sidebar">
+
+  
+  <a href="readme.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+        schism
+      </h1>
+      <h2 class="sidebar-projectVersion">
+        v0.1.0
+      </h2>
+    </div>
+    
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+    
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+    
+
+    
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+    
+
+    
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+      <h1>
+        <small class="visible-xs">schism v0.1.0</small>
+        Schism.Testing
+        
+      </h1>
+
+      
+
+      
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+          
+
+          
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+    <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#defsnippet/2">defsnippet(module_name_ast, list)</a>
+  </div>
+  
+    <div class="summary-synopsis"><blockquote><p>“I myself have read the writings and teachings of the heretics, polluting my soul for a while with their abominable notions, though deriving this benefit: I was able to refute them for myself and loathe them even more.”</p>
+</blockquote>
+</div>
+  
+</div>
+
+  </div>
+
+
+          
+
+        </section>
+      
+
+      
+
+      
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Functions
+          </h1>
+          <div class="detail" id="defsnippet/2">
+  
+  
+  <div class="detail-header">
+    <a href="#defsnippet/2" class="detail-link" title="Link to this macro">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <span class="signature">defsnippet(module_name_ast, list)</span>
+    
+    
+      <span class="note">(macro)</span>
+    
+    
+  </div>
+  <section class="docstring">
+    <blockquote><p>“I myself have read the writings and teachings of the heretics, polluting my soul for a while with their abominable notions, though deriving this benefit: I was able to refute them for myself and loathe them even more.”</p>
+</blockquote>
+<ul>
+<li>Eusebius, <em>The Church History</em>
+</li>
+</ul>
+<p>The <code class="inline">:schism</code> library can be used to make your code faster.
+But you must ensure that the <em>heresies</em> you want to test are compatible with the <em>dogma</em>.
+One way of doing this is by running the same test suites for the heresy and for the dogma.
+The <a href="Schism.Testing.html#content"><code class="inline">Schism.Testing</code></a> module provides the <code class="inline">Schism.Testing.defsnipped</code> macro that reduces
+the amount of boilerplate you need.</p>
+<p>The use of this macro is best explained by example.
+First, you define a snippet (don’t forget to <code class="inline">require</code> the <a href="Schism.Testing.html#content"><code class="inline">Schism.Testing</code></a> module!)</p>
+<pre><code class="elixir">require Schism.Testing
+Schism.Testing.defsnippet StructsVsRecordsTestSnippet do
+  use ExUnit.Case, async: false
+
+  test &quot;...&quot; do
+    # ...
+  end
+
+  # ...
+end</code></pre>
+<p>Then, you can <code class="inline">use</code> the snippet inside your real testing modules:</p>
+<pre><code class="elixir">defmodule StructsVsRecords.StructsAreSuperior do
+  use StructsVsRecordsTestSnippet,
+    conversions: %{&quot;structs vs records&quot; =&gt; &quot;structs are superior&quot;}
+end
+
+defmodule StructsVsRecords.RecordsAreSuperior do
+  use StructsVsRecordsTestSnippet,
+    conversions: %{&quot;structs vs records&quot; =&gt; &quot;records are superior&quot;}
+end</code></pre>
+<p>The code above injects the code of the snippet inside your modules and
+makes sure your project is converted to the right beliefs before the tests
+in the module are run.
+For this to work, the snippet injects a <code class="inline">setup_all</code> macro that handles
+the conversions when the tests start and reverts to the dogma when the tests stop.
+If you need more control, simply omit the <code class="inline">:conversions</code> option and invoke the
+<code class="inline">setup_all</code> macro yourself:</p>
+<pre><code class="elixir">defmodule StructsVsRecords.RecordsAreSuperior do
+  use StructsVsRecordsTestSnippet
+
+  setup_all do
+    Schism.convert(%{&quot;structs vs records&quot; =&gt; &quot;records are superior&quot;}
+    # ... custom setup code ...
+
+    # After all tests are done, convert to the dogma
+    on_exit fn -&gt;
+      # ... custom teardown code ...
+      Schism.convert_to_dogma()
+    end
+  end
+end
+
+Tests that use `schism` can&#39;t be run with `async: true`, because that will
+break all of the guarantees `schism` needs to work properly.
+
+### What is this Sorcery?! Surely it must be... HERESY!
+
+&gt; “History warns us ... that it is the customary fate of new truths to begin as heresies and to end as superstitions.”
+
+* Thomas Henry Huxley, *Collected Essays of Thomas Henry Huxley *
+
+The above looks more magical than it really is...
+The `defsnippet` macro is just a wrapper around `defmodule` that defines
+a `__using__/2` macro so that the module can be used.
+
+The `__using__/2` macro is defined such that it splices the AST of the snippet
+into the module it&#39;s invoked on (it also adds the `setup_all` macro, as defined above).
+
+If confused, just check the implementation, which is very simple.</code></pre>
+
+  </section>
+</div>
+
+        </section>
+      
+
+      
+          <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.3),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/app-9bd040e5e5.js"></script>
+  
+  
+  
+  
+  </body>
+</html>
+
