@@ -1,21 +1,21 @@
 # Modules with branch points we want to test
 defmodule ModuleA do
-  import BranchPoint
+  import Schism
 
-  branch_point :branch_point1 do
-    default do
+  schism "schism #1" do
+    dogma "implementation #1.1" do
       def f(x) do
         x * 1
       end
     end
 
-    alternative "implementation #1.2" do
+    heresy "implementation #1.2" do
       def f(x) do
         x * 2
       end
     end
 
-    alternative "implementation #1.3" do
+    heresy "implementation #1.3" do
       def f(x) do
         x * 3
       end
@@ -24,22 +24,22 @@ defmodule ModuleA do
 end
 
 defmodule ModuleB do
-  import BranchPoint
+  import Schism
 
-  branch_point :branch_point1 do
-    default do
+  schism "schism #1" do
+    dogma "implementation #1.1" do
       def g(x) do
         {:impl1, x * 1}
       end
     end
 
-    alternative "implementation #1.2" do
+    heresy "implementation #1.2" do
       def g(x) do
         {:impl2, x * 2}
       end
     end
 
-    alternative "implementation #1.3" do
+    heresy "implementation #1.3" do
       def g(x) do
         {:impl3, x * 3}
       end

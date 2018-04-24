@@ -1,13 +1,19 @@
-defmodule BranchPoint.MixProject do
+defmodule Schism.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :branch_point,
+      app: :schism,
       version: "0.1.0",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      docs: [
+        main: "readme",
+        extras: [
+          "README.md"
+        ]
+      ]
     ]
   end
 
@@ -20,6 +26,10 @@ defmodule BranchPoint.MixProject do
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
-    []
+    [
+      # only to generate tables for the docs
+      {:benchee, "~> 0.13.0", only: [:dev]},
+      {:ex_doc, "~> 0.18.3", only: [:dev]}
+    ]
   end
 end
